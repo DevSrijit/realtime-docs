@@ -31,7 +31,7 @@ const Document = async ({ params: { id } }: SearchParamProps) => {
   const currentUserType = room.usersAccesses[clerkUser.emailAddresses[0].emailAddress]?.includes("room:write") ? "editor" : "viewer";
 
   return (
-    <main className="w-full flex flex-col">
+    <main className="w-full flex flex-col items-center">
       {/* items-center was also in className but eh */}
       <CollaborativeRoom roomId={id} roomMetadata={room.metadata} users={usersData} currentUserType={currentUserType}/>
     </main>
