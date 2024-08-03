@@ -3,6 +3,7 @@ import CollaborativeRoom from "@/components/CollaborativeRoom";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { getDocument } from "@/lib/actions/room.actions";
+import { getClerkUsers } from "@/lib/actions/user.actions";
 
 const Document = async ({ params: { id } }: SearchParamProps) => {
   const clerkUser = await currentUser();
@@ -19,12 +20,20 @@ const Document = async ({ params: { id } }: SearchParamProps) => {
     redirect("/");
   }
 
-  //TODO: Add a check for the user's permissions to access the document
+  const userIds = Object.keys(room.usersAccesses);
+  const users = await getClerkUsers({userIds});
+
+  const  usersData = users.map((user: User) => ({
+    ...user,
+    userType: room.usersAccesses[user.email]?.includes("room:write") ? "editor" : "viewer",
+  }))
+
+  const currentUserType = room.usersAccesses[clerkUser.emailAddresses[0].emailAddress]?.includes("room:write") ? "editor" : "viewer";
 
   return (
     <main className="w-full flex flex-col">
       {/* items-center was also in className but eh */}
-      <CollaborativeRoom roomId={id} roomMetadata={room.metadata} />
+      <CollaborativeRoom roomId={id} roomMetadata={room.metadata} users={usersData} currentUserType={currentUserType}/>
     </main>
   );
 };
