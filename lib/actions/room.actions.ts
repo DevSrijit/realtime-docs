@@ -14,7 +14,7 @@ export const createDocument = async ({
     const metadata = {
       creatorId: userId,
       email,
-      title: "Untitle",
+      title: "Untitled",
     };
 
     const usersAccesses: RoomAccesses = {
@@ -43,12 +43,12 @@ export const getDocument = async ({
 }) => {
   try {
     const room = await liveblocks.getRoom(roomId);
+    //TODO Bring this back
+    // const hasAccess = Object.keys(room.usersAccesses).includes(userId);
 
-    const hasAccess = Object.keys(room.usersAccesses).includes(userId);
-
-    if (!hasAccess) {
-      throw new Error("You don't have access to this room");
-    }
+    // if (!hasAccess) {
+    //   throw new Error("You don't have access to this room");
+    // }
 
     return parseStringify(room);
   } catch (error) {
