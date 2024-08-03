@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
+import { DeleteModal } from "@/components/DeleteModal";
 
 const Page = async () => {
   const clerkUser = await currentUser();
@@ -17,9 +18,7 @@ const Page = async () => {
   const roomDocuments = await getDocuments(
     clerkUser.emailAddresses[0].emailAddress
   );
-
-  console.log(roomDocuments.data.length);
-
+  
   return (
     <main className="home-container">
       <Header className="sticky left-0 top-0">
@@ -59,7 +58,9 @@ const Page = async () => {
                       </p>
                     </div>
                   </Link>
-                  {/* TODO: Delete button */}
+                  <DeleteModal
+                  roomId={id}
+                  />
                 </li>
               ))}
           </ul>
