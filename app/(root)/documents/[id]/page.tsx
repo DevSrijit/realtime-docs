@@ -1,13 +1,12 @@
-import { Editor } from "@/components/editor/Editor";
 import React from "react";
-import Header from "@/components/Header";
-import { SignedOut, SignedIn, UserButton, SignInButton } from "@clerk/nextjs";
+import CollaborativeRoom from "@/components/CollaborativeRoom";
 
 const Document = () => {
   return (
-    <div>
-      
-    </div>
+    <main className="w-full flex flex-col"> 
+    {/* items-center was also in className but eh */}
+      <CollaborativeRoom />
+    </main>
   );
 };
 
