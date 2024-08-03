@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { dark } from "@clerk/themes";
+import Provider from "./Provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -29,17 +30,19 @@ export default function RootLayout({
         },
       }}
     >
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          {children}
-        </body>
-      </html>
+      <Provider>
+        <html lang="en" suppressHydrationWarning>
+          <head />
+          <body
+            className={cn(
+              "min-h-screen bg-background font-sans antialiased",
+              fontSans.variable
+            )}
+          >
+            {children}
+          </body>
+        </html>
+      </Provider>
     </ClerkProvider>
   );
 }
