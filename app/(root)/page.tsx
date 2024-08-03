@@ -18,6 +18,8 @@ const Page = async () => {
     clerkUser.emailAddresses[0].emailAddress
   );
 
+  console.log(roomDocuments.data.length);
+
   return (
     <main className="home-container">
       <Header className="sticky left-0 top-0">
@@ -29,7 +31,7 @@ const Page = async () => {
         </div>
       </Header>
 
-      {roomDocuments.length > 0 ? (
+      {roomDocuments.data.length > 0 ? (
         <div className="document-list-container">
           <div className="document-list-title">
             <h3 className="text-28-semibold">All Documents</h3>
