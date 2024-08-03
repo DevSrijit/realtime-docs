@@ -70,3 +70,19 @@ export const updateDocument = async (roomId: string, title: string) => {
     console.error(`Error occured while updating a room: ${error}`);
   }
 };
+
+export const getDocuments = async (email: string) => {
+  try {
+    const rooms = await liveblocks.getRooms({ userId: email });
+    //TODO Bring this back
+    // const hasAccess = Object.keys(room.usersAccesses).includes(userId);
+
+    // if (!hasAccess) {
+    //   throw new Error("You don't have access to this room");
+    // }
+
+    return parseStringify(rooms);
+  } catch (error) {
+    console.error(`Error occured while fetching all rooms: ${error}`);
+  }
+};

@@ -21,17 +21,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-        variables: {
-          colorPrimary: "#3371FF",
-          fontSize: "16px",
-        },
-      }}
-    >
-      <Provider>
-        <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
+      <ClerkProvider
+        appearance={{
+          baseTheme: dark,
+          variables: {
+            colorPrimary: "#3371FF",
+            fontSize: "16px",
+          },
+        }}
+      >
+        <Provider>
           <head />
           <body
             className={cn(
@@ -41,8 +41,8 @@ export default function RootLayout({
           >
             {children}
           </body>
-        </html>
-      </Provider>
-    </ClerkProvider>
+        </Provider>
+      </ClerkProvider>
+    </html>
   );
 }
